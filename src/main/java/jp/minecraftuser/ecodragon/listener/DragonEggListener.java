@@ -44,8 +44,8 @@ public class DragonEggListener extends ListenerFrame {
 
         // 設置者を記録
         Block b = event.getBlock();
-        if ((b.getType() == Material.PISTON_BASE) || b.getType() == Material.PISTON_STICKY_BASE) piston = pl;
-        if (b.getType() == Material.REDSTONE_TORCH_ON) torch = pl;
+        if ((b.getType() == Material.PISTON) || b.getType() == Material.STICKY_PISTON) piston = pl;
+        if (b.getType() == Material.REDSTONE_TORCH || b.getType() == Material.REDSTONE_WALL_TORCH) torch = pl;
     }
 
     /**

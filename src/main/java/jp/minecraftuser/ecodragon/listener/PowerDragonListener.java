@@ -132,10 +132,31 @@ public class PowerDragonListener extends ListenerFrame {
 //                    if ((changeLoc.getBlock().getType() == Material.OBSIDIAN) && ((checkLoc.getBlock().getType() == Material.WATER) || (checkLoc.getBlock().getType() == Material.STATIONARY_WATER))) continue;
                     // 水も破壊しない
                     if (changeLoc.getBlock().getType() == Material.WATER) continue;
-                    if (changeLoc.getBlock().getType() == Material.STATIONARY_WATER) continue;
                     // あと看板も
-                    if (changeLoc.getBlock().getType() == Material.SIGN) continue;
-                    if (changeLoc.getBlock().getType() == Material.SIGN_POST) continue;
+                    if (changeLoc.getBlock().getType() == Material.OAK_SIGN) continue;
+                    if (changeLoc.getBlock().getType() == Material.SPRUCE_SIGN) continue;
+                    if (changeLoc.getBlock().getType() == Material.BIRCH_SIGN) continue;
+                    if (changeLoc.getBlock().getType() == Material.JUNGLE_SIGN) continue;
+                    if (changeLoc.getBlock().getType() == Material.ACACIA_SIGN) continue;
+                    if (changeLoc.getBlock().getType() == Material.DARK_OAK_SIGN) continue;
+                    //アプデ用
+                    //if (changeLoc.getBlock().getType() == Material.CRIMSON_SIGN) continue;
+                    //if (changeLoc.getBlock().getType() == Material.WARPED_SIGN) continue;
+
+                    if (changeLoc.getBlock().getType() == Material.OAK_WALL_SIGN) continue;
+                    if (changeLoc.getBlock().getType() == Material.SPRUCE_WALL_SIGN) continue;
+                    if (changeLoc.getBlock().getType() == Material.BIRCH_WALL_SIGN) continue;
+                    if (changeLoc.getBlock().getType() == Material.JUNGLE_WALL_SIGN) continue;
+                    if (changeLoc.getBlock().getType() == Material.ACACIA_WALL_SIGN) continue;
+                    if (changeLoc.getBlock().getType() == Material.DARK_OAK_WALL_SIGN) continue;
+                    //アプデ用
+                    //if (changeLoc.getBlock().getType() == Material.CRIMSON_WALL_SIGN) continue;
+                    //if (changeLoc.getBlock().getType() == Material.WARPED_WALL_SIGN) continue;
+
+
+
+
+
                     // チェストも壊さない
                     //if (changeLoc.getBlock().getType() == Material.CHEST) continue;
                     //if (changeLoc.getBlock().getType() == Material.ENDER_CHEST) continue;
@@ -254,8 +275,18 @@ public class PowerDragonListener extends ListenerFrame {
 
                 // creativeユーザーは除外
                 if (tgtp.getGameMode() == GameMode.CREATIVE) {
+                    boolean exitSurvivalPlayer = false;
+                    for(Player player:event.getEntity().getWorld().getPlayers()){
+                        if(player.getGameMode() == GameMode.SURVIVAL){
+                            exitSurvivalPlayer = true;
+                        }
+                    }
+                    if(!exitSurvivalPlayer){
+                        break;
+                    }
                     tgtcnt++;
                     continue;
+
                 }
                 // プレイヤーの居る位置が高さ60以下だったら対象外
                 if (tgtp.getLocation().getY() <= 60) {
@@ -401,9 +432,8 @@ public class PowerDragonListener extends ListenerFrame {
     public LivingEntity spawnWitherSkeleton(Entity entity) {
         Skeleton ent = (Skeleton)entity.getWorld().spawnEntity(entity.getLocation(),
                 EntityType.SKELETON);
-        ent.setSkeletonType(Skeleton.SkeletonType.WITHER);
-        ent.getEquipment().setItemInHand(addAtkEnchant(new ItemStack(Material.DIAMOND_SWORD)));
-        ent.getEquipment().setItemInHandDropChance(0.001f);
+        ent.getEquipment().setItemInMainHand(addAtkEnchant(new ItemStack(Material.DIAMOND_SWORD)));
+        ent.getEquipment().setItemInMainHandDropChance(0.001f);
         ent.getEquipment().setBoots(addDefEnchant(new ItemStack(Material.DIAMOND_BOOTS)));
         ent.getEquipment().setBootsDropChance(0.001f);
         ent.getEquipment().setChestplate(addDefEnchant(new ItemStack(Material.DIAMOND_CHESTPLATE)));
@@ -428,9 +458,8 @@ public class PowerDragonListener extends ListenerFrame {
     public LivingEntity spawnSkeleton(Entity entity) {
         Skeleton ent = (Skeleton)entity.getWorld().spawnEntity(entity.getLocation(),
                 EntityType.SKELETON);
-        ent.setSkeletonType(Skeleton.SkeletonType.STRAY);
-        ent.getEquipment().setItemInHand(addShotEnchant(new ItemStack(Material.BOW)));
-        ent.getEquipment().setItemInHandDropChance(0.001f);
+        ent.getEquipment().setItemInMainHand(addShotEnchant(new ItemStack(Material.BOW)));
+        ent.getEquipment().setItemInMainHandDropChance(0.001f);
         ent.getEquipment().setBoots(addDefEnchant(new ItemStack(Material.DIAMOND_BOOTS)));
         ent.getEquipment().setBootsDropChance(0.001f);
         ent.getEquipment().setChestplate(addDefEnchant(new ItemStack(Material.DIAMOND_CHESTPLATE)));
@@ -455,8 +484,8 @@ public class PowerDragonListener extends ListenerFrame {
     public LivingEntity spawnZombie(Entity entity) {
         Zombie ent = (Zombie)entity.getWorld().spawnEntity(entity.getLocation(),
                 EntityType.ZOMBIE);
-        ent.getEquipment().setItemInHand(addAtkEnchant(new ItemStack(Material.DIAMOND_SWORD)));
-        ent.getEquipment().setItemInHandDropChance(0.001f);
+        ent.getEquipment().setItemInMainHand(addAtkEnchant(new ItemStack(Material.DIAMOND_SWORD)));
+        ent.getEquipment().setItemInMainHandDropChance(0.001f);
         ent.getEquipment().setBoots(addDefEnchant(new ItemStack(Material.DIAMOND_BOOTS)));
         ent.getEquipment().setBootsDropChance(0.001f);
         ent.getEquipment().setChestplate(addDefEnchant(new ItemStack(Material.DIAMOND_CHESTPLATE)));

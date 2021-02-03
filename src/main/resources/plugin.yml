@@ -1,6 +1,7 @@
 name: EcoDragon
 main: jp.minecraftuser.ecodragon.EcoDragon
 version: ${project.version}
+api-version: 1.15
 depend: [EcoFramework]
 commands:
   ecd:

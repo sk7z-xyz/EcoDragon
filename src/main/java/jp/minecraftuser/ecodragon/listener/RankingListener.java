@@ -384,8 +384,8 @@ public class RankingListener extends ListenerFrame {
             if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
                 if (event.getItem() != null) {
                     // ホッパートロッコ禁止
-                    if (event.getItem().getType() == Material.EXPLOSIVE_MINECART) {
-                        if ((b.getType() == Material.RAILS) ||
+                    if (event.getItem().getType() == Material.TNT_MINECART) {
+                        if ((b.getType() == Material.RAIL) ||
                             (b.getType() == Material.POWERED_RAIL) ||
                             (b.getType() == Material.DETECTOR_RAIL) ||
                             (b.getType() == Material.ACTIVATOR_RAIL)){
@@ -544,12 +544,12 @@ public class RankingListener extends ListenerFrame {
             case HOPPER:
                 boolean hit = false;
                 if (event.getCurrentItem() != null) {
-                    if (event.getCurrentItem().getType() == Material.EXPLOSIVE_MINECART) {
+                    if (event.getCurrentItem().getType() == Material.TNT_MINECART) {
                         hit = true;
                     }
                 }
                 if (event.getCursor() != null) {
-                    if (event.getCursor().getType() == Material.EXPLOSIVE_MINECART) {
+                    if (event.getCursor().getType() == Material.TNT_MINECART) {
                         hit = true;
                     }
                 }
@@ -662,7 +662,7 @@ public class RankingListener extends ListenerFrame {
      */
     @EventHandler(priority = EventPriority.LOWEST)
     public void LingeringPotionSplashEvent(LingeringPotionSplashEvent event) {
-        LingeringPotion p = event.getEntity();
+        ThrownPotion p = event.getEntity();
         if (p.getWorld().equals(curWorld)) {
             for (PotionEffect po : p.getEffects()) {
                 if (po.getType() == PotionEffectType.INVISIBILITY) {
@@ -871,14 +871,14 @@ public class RankingListener extends ListenerFrame {
             ArrayList<ItemStack> list = new ArrayList<>();
             list.add(new ItemStack(Material.GRASS, 64));
             list.add(new ItemStack(Material.LAPIS_BLOCK));
-            list.add(new ItemStack(Material.WEB, 32));
-            list.add(new ItemStack(Material.RED_ROSE, 10));
+            list.add(new ItemStack(Material.COBWEB, 32));
+            list.add(new ItemStack(Material.POPPY, 10));
             list.add(new ItemStack(Material.BROWN_MUSHROOM, 10));
             list.add(new ItemStack(Material.RED_MUSHROOM, 10));
             list.add(new ItemStack(Material.MOSSY_COBBLESTONE, 64));
             list.add(new ItemStack(Material.DIAMOND_BLOCK, 3));
-            list.add(new ItemStack(Material.WORKBENCH));
-            list.add(new ItemStack(Material.SOIL, 64));
+            list.add(new ItemStack(Material.CRAFTING_TABLE));
+            //list.add(new ItemStack(Material.FARMLAND, 64));//耕地ブロックは logblockで使用する為コメントアウト
             list.add(new ItemStack(Material.FLINT, 64));
             list.add(new ItemStack(Material.EMERALD_BLOCK, 3));
             list.add(new ItemStack(Material.GOLDEN_APPLE, 3));
